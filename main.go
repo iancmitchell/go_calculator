@@ -9,7 +9,6 @@ import (
 )
 
 func extractOperators(equation string) []string {
-	fmt.Println(equation)
 	splitOperators := strings.Fields(equation)
 	return splitOperators
 }
@@ -27,7 +26,7 @@ func isSymbol(item string) bool {
 func performOperations(operators []string) float64 {
 	var total float64
 	var lastSymbol string
-	for i, v := range operators {
+	for _, v := range operators {
 		if isSymbol(v) {
 			lastSymbol = v
 		} else {
@@ -45,8 +44,6 @@ func performOperations(operators []string) float64 {
 				total = val
 			}
 		}
-
-		fmt.Println("Run: ", i, v, total, lastSymbol)
 	}
 	return total
 }
@@ -60,9 +57,6 @@ func main() {
 		fmt.Println("Nothing Entered")
 	}
 	splitOperators := extractOperators(text)
-	for i, v := range splitOperators {
-		fmt.Printf("%d - %s\n", i, v)
-	}
 	total := performOperations(splitOperators)
 	fmt.Println("Result: ", total)
 }
